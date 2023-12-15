@@ -6,50 +6,54 @@
 
   <xs:complexType name="contributor">
     <xs:complexContent>
-      <xs:restriction base="contributorType">
+      <xs:extension base="contributorType">
         <xs:sequence>
           <xs:element name="changes" type="changes" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
-      </xs:restriction>
+      </xs:extension>
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="contributorType">
-    <xs:choice>
-      <xs:element name="Human">
-        <xs:complexType>
+    <xs:complexContent>
+      <xs:extension base="contributingEntity">
+        <xs:choice>
+          <xs:element name="Human">
+            <xs:complexType>
 
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="Non-Human">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="generativePrompt" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="generativePromptURL" type="xs:anyURI" minOccurs="0"/>
-            <xs:element name="detail" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:any minOccurs="0" maxOccurs="unbounded"/>
-          </xs:sequence>
-          <xs:attribute name="TypeExt" default="Standard">
-            <xs:simpleType>
-              <xs:restriction base="xs:string">
-                <xs:enumeration value="Standard"/>
-                <xs:enumeration value="AI"/>
-                <xs:enumeration value="ChatGPT"/>
-                <xs:enumeration value="Copilot Assisted"/>
-                <xs:pattern value="[a-zA-Z0-9]*"/>
-                <xs:whiteSpace value="replace"/>
-              </xs:restriction>
-            </xs:simpleType>
-          </xs:attribute>
-          <xs:attribute name="version" type="xs:string"/>
-        </xs:complexType>
-      </xs:element>
-    </xs:choice>
+
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Non-Human">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="generativePrompt" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="generativePromptURL" type="xs:anyURI" minOccurs="0"/>
+                <xs:element name="detail" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:any minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+              <xs:attribute name="TypeExt" default="Standard">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Standard"/>
+                    <xs:enumeration value="AI"/>
+                    <xs:enumeration value="ChatGPT"/>
+                    <xs:enumeration value="Copilot Assisted"/>
+                    <xs:pattern value="[a-zA-Z0-9]*"/>
+                    <xs:whiteSpace value="replace"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:attribute>
+              <xs:attribute name="version" type="xs:string"/>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="contributingEntity">
     <xs:sequence>
-      <xs:element name="type" type="contributorType"/>
       <xs:element name="name" type="xs:string"/>
       <xs:element name="contact">
         <xs:complexType>
@@ -58,7 +62,8 @@
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="name" type="xs:string"/>
-                  <xs:any maxOccurs="unbounded"/>
+                  <xs:element name="url" type="xs:anyURI"/>
+                  <xs:any minOccurs="0" maxOccurs="unbounded"/>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -139,7 +144,7 @@
 
   <xs:simpleType name="githubProfile">
     <xs:restriction base="xs:string">
-      <xs:pattern value="\^(https?://)?(www\.)?github\.com/[a-zA-Z0-9_]{1,25}\$/ig"/>
+      <xs:pattern value="^(https?://)?(www[.])?github[.]com/[a-zA-Z0-9_]{1,25}$"/>
       <xs:whiteSpace value="collapse"/>
     </xs:restriction>
   </xs:simpleType>
@@ -153,25 +158,36 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:element name="authors">
-    <xs:annotation>
-      <xs:documentation>Main contributors to the project.</xs:documentation>
-    </xs:annotation>
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="author" type="contributor" maxOccurs="unbounded"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-
   <xs:element name="contributors">
     <xs:annotation>
       <xs:documentation>Contributors to the project.</xs:documentation>
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="contributor" type="contributor" maxOccurs="unbounded"/>
+        <xs:element name="authors" fixed="">
+          <xs:annotation>
+            <xs:documentation>Main contributors to the project.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="author" type="contributor" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="contributors">
+          <xs:annotation>
+            <xs:documentation>Contributors to the project.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="contributor" type="contributor" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+
+
 </xs:schema>
