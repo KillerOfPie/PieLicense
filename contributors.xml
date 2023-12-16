@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<contributors xmlns="https://lic.pastrymaker-studios.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="https://lic.pastrymaker-studios.com https://raw.githubusercontent.com/KillerOfPie/PieLicense/master/ContributorsSchema/contributors.xsd">
+  <authors>
+    <author>
+      <name>KillerOfPie</name>
+      <contact>
+        <organization>
+          <name>PastryMaker-Studios</name>
+          <url>https://dev.pastrymaker-studios.com</url>
+        </organization>
+        <email>me@killerofpie.com</email>
+      </contact>
+      <Human/>
+
+      <changes>
+        <change>
+          <between from="2023-12-14" to="2023-12-15"/>
+        </change>
+      </changes>
+    </author>
+  </authors>
+  <contributors/>
+</contributors>
