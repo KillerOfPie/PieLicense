@@ -1,8 +1,6 @@
-<#-- FreeMarker template for the Pie License -->
-
 # Pie License Version 1.0 Summary
 
-The Pie License, provided by ${copyright.holders}, is a modified MIT/X11 License offering freedom for using, modifying, and distributing the software. Key terms include:
+The Pie License, provided by ${owner}, is a modified MIT/X11 License offering freedom for using, modifying, and distributing the software. Key terms include:
 
 1. Include the copyright notice, permission notice, and contributors file in all copies.
 2. Distribute non-minified, non-obfuscated versions with the original, human-readable license intact and attribute to the original authors and contributors.
@@ -14,7 +12,7 @@ The software is provided "as is" without warranty. The copyright holders and con
 
 # Pie License Version 1.0
 
-Copyright (c) ${copyright.firstYear}-${copyright.lastYear} ${provider}
+Copyright (c) ${project.inceptionYear}-${copyright.lastYear} ${owner}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -1,6 +1,6 @@
 # Pie License Version 1.0 Summary
 
-The Pie License, provided by ${copyright.holders}, is a modified MIT/X11 License offering freedom for using, modifying, and distributing the software. Key terms include:
+The Pie License, provided by ${owner}, is a modified MIT/X11 License offering freedom for using, modifying, and distributing the software. Key terms include:
 
 1. Include the copyright notice, permission notice, and contributors file in all copies.
 2. Distribute non-minified, non-obfuscated versions with the original, human-readable license intact and attribute to the original authors and contributors.
